@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Log in to the Atlas Nexus interactive prototype — pick a role and enter its workspace.">
+  <title>Atlas Nexus — Log in</title>
+  <link rel="icon" href="images/atlas-nexus-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Outfit','sans-serif']},colors:{ink:'#252236',muted:'#6c687c',violet:'#7250ce',paper:'#f6f5f9',line:'#e5e2ed'}}}};</script>
+  <style>:root{--ink:#252236;--muted:#6c687c;--violet:#7250ce;--line:#e5e2ed;--paper:#f6f5f9}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Outfit,sans-serif;-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}.wrap{width:min(960px,calc(100% - 48px));margin:auto}.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:500;font-size:14px;border:1px solid var(--line);transition:background .2s;width:100%}.button.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.button.primary:hover{background:#493765}.muted{color:var(--muted)}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px}.role-tab{border:1px solid var(--line);border-radius:12px;padding:12px 8px;font-size:13px;background:#fff;flex:1}.role-tab[aria-pressed=true]{background:#eee8fa;border-color:var(--violet);color:#5b34b5;font-weight:600}label.field{display:block;font-size:13px;margin-top:16px}label.field input{margin-top:6px;width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;background:#fbfafc}.error{background:#fdecec;border:1px solid #f3b8b8;color:#8f1f1f;border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:14px}</style>
+</head>
+<body>
+<main class="wrap py-10 md:py-16">
+  <a href="marketing.html" aria-label="Atlas Nexus home"><img src="images/atlas-nexus-logo.png" alt="Atlas Nexus" class="w-[145px]"></a>
+  <div class="grid md:grid-cols-2 gap-8 mt-8 items-start">
+    <div>
+      <p class="text-[13px] muted"><a class="underline underline-offset-4" href="marketing.html">Home</a> / <strong class="text-ink">Log in</strong></p>
+      <h1 class="mt-4" style="font-size:clamp(34px,4vw,50px);line-height:1.05;letter-spacing:-.04em;font-weight:500">Welcome back.<br>Pick your workspace.</h1>
+      <p class="muted mt-4 leading-relaxed">End-to-end demo flow: <strong class="text-ink">marketing → log in → app</strong>. Choose Agency, Brand, or Creator, then enter the matching workspace. Same-browser tabs can hold different roles.</p>
+      <ul class="muted text-sm mt-5 space-y-2">
+        <li>· Agency → <code>app-agency.html</code> (Nadia Putri)</li>
+        <li>· Brand → <code>app-brand.html</code> (Rani Wijaya)</li>
+        <li>· Creator → <code>app-creator.html</code> (Maya Rahman)</li>
+      </ul>
+      <p class="text-sm mt-5">New here? <a class="underline underline-offset-4" id="register-link" href="register.html">Create an account</a> · <a class="underline underline-offset-4" href="index.html">All four roles incl. Super Admin</a></p>
+    </div>
+    <section class="card" aria-labelledby="login-title">
+      <h2 id="login-title" class="text-xl font-medium">Log in to Atlas Nexus</h2>
+      <p class="muted text-sm mt-2">Simulated sign-in. Credentials are fictional, prefilled, read-only.</p>
+      <div class="flex gap-2 mt-5" role="group" aria-label="Choose role">
+        <button class="role-tab" data-role="agency" aria-pressed="true">Agency</button>
+        <button class="role-tab" data-role="brand" aria-pressed="false">Brand</button>
+        <button class="role-tab" data-role="creator" aria-pressed="false">Creator</button>
+      </div>
+      <div id="form-error"></div>
+      <form id="login-form" class="mt-2">
+        <label class="field">Demo email<input id="email" type="email" readonly required></label>
+        <label class="field">Demo password<input id="password" type="password" value="atlas-demo" readonly required></label>
+        <p class="text-xs muted mt-3" id="role-note"></p>
+        <div class="mt-5"><button class="button primary" type="submit" id="submit-btn">Enter Agency workspace</button></div>
+      </form>
+      <p class="text-xs muted mt-4">Super Admin demo lives in <a class="underline underline-offset-4" href="index.html?role=admin">index.html</a>. Brand is a proposed read-only POV.</p>
+    </section>
+  </div>
+</main>
+<script>
+(function(){
+  var ROLES = {
+    agency: {label:'Agency', file:'app-agency.html', name:'Nadia Putri', email:'nadia@agency.demo', note:'Orbit Creative · Organization admin.'},
+    brand: {label:'Brand', file:'app-brand.html', name:'Rani Wijaya', email:'rani@lumina.demo', note:'Proposed stakeholder experience. Lumina campaigns, read-only.'},
+    creator: {label:'Creator', file:'app-creator.html', name:'Maya Rahman', email:'maya@creator.demo', note:'Maya Makes · Creator workspace.'}
+  };
+  var SESSION = 'atlas-nexus-demo-session';
+  var params = new URLSearchParams(location.search);
+  var selected = ROLES[params.get('role')] ? params.get('role') : 'agency';
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.role-tab'));
+  var email = document.getElementById('email');
+  var submitBtn = document.getElementById('submit-btn');
+  var roleNote = document.getElementById('role-note');
+  var errBox = document.getElementById('form-error');
+  function select(role){
+    selected = role;
+    tabs.forEach(function(t){ t.setAttribute('aria-pressed', String(t.dataset.role === role)); });
+    email.value = ROLES[role].email;
+    submitBtn.textContent = 'Enter ' + ROLES[role].label + ' workspace';
+    roleNote.textContent = ROLES[role].name + ' · ' + ROLES[role].note;
+    document.getElementById('register-link').href = 'register.html?role=' + role;
+    try { history.replaceState(null, '', 'login.html?role=' + role); } catch(e){}
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ select(t.dataset.role); }); });
+  select(selected);
+  document.getElementById('login-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    errBox.innerHTML = '';
+    try {
+      sessionStorage.setItem(SESSION, JSON.stringify({role: selected, at: Date.now()}));
+      try { localStorage.setItem('atlas-nexus-demo-last-role', selected); } catch(e2){}
+      location.href = ROLES[selected].file;
+    } catch(err){
+      errBox.innerHTML = '<div class="error" role="alert">Could not start the demo session in this browser. Try the <a class="underline" href="index.html?role=' + selected + '">full demo sign-in</a>.</div>';
+    }
+  });
+})();
+</script>
+</body>
+</html>

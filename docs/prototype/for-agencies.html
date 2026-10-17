@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Atlas Nexus for Agencies — discovery, campaign planning, applications, roster, monitoring, and Creator Suites in one workspace.">
+  <title>Atlas Nexus — For Agencies</title>
+  <link rel="icon" href="images/atlas-nexus-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Outfit','sans-serif']},colors:{ink:'#252236',muted:'#6c687c',violet:'#7250ce',paper:'#f6f5f9',line:'#e5e2ed'}}}};</script>
+  <style>:root{--ink:#252236;--muted:#6c687c;--violet:#7250ce;--line:#e5e2ed;--paper:#f6f5f9}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Outfit,sans-serif;-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}.wrap{width:min(1200px,calc(100% - 64px));margin:auto}.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:500;font-size:14px;border:1px solid var(--line);transition:background .2s}.button.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.button.primary:hover{background:#493765}.button.secondary{background:#fff}.button.secondary:hover{background:#eee8fa}.muted{color:var(--muted)}.hero-title{font-size:clamp(40px,5vw,64px);line-height:1.05;letter-spacing:-.05em;font-weight:500}.section-title{font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-.04em;font-weight:500}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}@media(max-width:767px){.wrap{width:calc(100% - 36px)}header .desktop-nav{display:none}}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="sticky top-0 z-50 bg-paper/90 backdrop-blur-xl border-b border-line/70">
+  <div class="wrap h-[84px] flex items-center justify-between gap-5">
+    <a href="marketing.html" aria-label="Atlas Nexus home"><img src="images/atlas-nexus-logo.png" width="155" height="52" alt="Atlas Nexus" class="w-[145px] h-auto"></a>
+    <nav aria-label="Main navigation" class="desktop-nav flex items-center gap-8 text-[14px] text-muted"><div class="relative group"><a href="marketing.html#for-you" class="hover:text-violet" aria-haspopup="true">Solutions <span aria-hidden="true">▾</span></a><div class="absolute hidden group-hover:block group-focus-within:block top-full left-0 pt-3 z-50"><div class="bg-white border border-line rounded-xl p-2 w-[250px] shadow-xl text-left"><a href="for-brands.html" class="block px-3 py-2.5 rounded-lg hover:bg-[#eee8fa]"><strong class="block text-ink text-[13px] font-medium">For Brands</strong><small class="block text-[11px]">Read-only campaign reporting</small></a><a href="for-agencies.html" class="block px-3 py-2.5 rounded-lg bg-[#eee8fa]"><strong class="block text-ink text-[13px] font-medium">For Agencies</strong><small class="block text-[11px]">Run discovery to monitoring</small></a><a href="for-creators.html" class="block px-3 py-2.5 rounded-lg hover:bg-[#eee8fa]"><strong class="block text-ink text-[13px] font-medium">For Creators</strong><small class="block text-[11px]">Apply and submit videos</small></a><div class="border-t border-line mt-1 pt-1"><a href="pricing.html" class="block px-3 py-2.5 rounded-lg hover:bg-[#eee8fa] text-[13px]">Pricing</a><a href="index.html" class="block px-3 py-2.5 rounded-lg hover:bg-[#eee8fa] text-[13px]">Live app demo · all roles</a></div></div></div></div><a href="pricing.html" class="hover:text-violet">Pricing</a><a href="marketing.html#how-it-works" class="hover:text-violet">How it works</a><a href="marketing.html#faq" class="hover:text-violet">FAQs</a></nav>
+    <div class="flex items-center gap-5"><a class="hidden sm:block text-sm" href="login.html?role=agency">Log in</a><a class="button primary !min-h-[40px] !px-5 hidden md:inline-flex" href="register.html?role=agency">Get started <span aria-hidden="true">↗</span></a></div>
+  </div>
+</header>
+<main id="main">
+  <section class="wrap pt-14 md:pt-20 pb-10">
+    <p class="text-[13px] muted"><a class="underline underline-offset-4" href="marketing.html">Home</a> / Solutions / <strong class="text-ink">For Agencies</strong></p>
+    <h1 class="hero-title mt-5 max-w-[760px]">Run the whole campaign. Stop chasing tabs.</h1>
+    <p class="muted text-[18px] leading-[1.7] mt-5 max-w-[640px]">Discovery, shortlist, six-step campaign setup, applications, eligibility, Atlas codes, verification, monitoring, and Creator Suites — one Agency workspace.</p>
+    <div class="flex flex-wrap gap-3 mt-8"><a class="button primary" href="register.html?role=agency">Create agency account <span aria-hidden="true">↗</span></a><a class="button secondary" href="login.html?role=agency">Log in as Agency</a><a class="button secondary" href="app-agency.html">Preview agency app <span aria-hidden="true">↗</span></a></div>
+    <p class="text-xs muted mt-4">Simulated demo: registration signs you straight into the Agency workspace (<code>app-agency.html</code>).</p>
+  </section>
+  <section class="wrap grid md:grid-cols-3 gap-5 py-8">
+    <article class="card"><h2 class="text-lg font-medium">Discover &amp; compare</h2><p class="muted text-[15px] mt-3 leading-relaxed">Search creator fixtures, shortlist, compare up to three. Shared shortlist carries into campaign setup.</p></article>
+    <article class="card"><h2 class="text-lg font-medium">Plan &amp; launch cleanly</h2><p class="muted text-[15px] mt-3 leading-relaxed">Six steps: information, configuration, creators, investment, readiness, workspace. Launch locks the baseline.</p></article>
+    <article class="card"><h2 class="text-lg font-medium">Deliver &amp; prove</h2><p class="muted text-[15px] mt-3 leading-relaxed">Approve → eligibility → Atlas code → verification → tracked-only monitoring. Export CSV evidence.</p></article>
+  </section>
+  <section class="wrap py-8">
+    <h2 class="section-title">Agency flow, end to end</h2>
+    <ol class="grid md:grid-cols-4 gap-5 mt-7 list-none p-0">
+      <li class="card"><p class="text-xs muted">Step 1</p><h3 class="font-medium mt-2">Shortlist creators</h3><p class="muted text-sm mt-2">Discovery → compare → shared shortlist.</p></li>
+      <li class="card"><p class="text-xs muted">Step 2</p><h3 class="font-medium mt-2">Create &amp; launch</h3><p class="muted text-sm mt-2">Wizard, forecast, readiness gate.</p></li>
+      <li class="card"><p class="text-xs muted">Step 3</p><h3 class="font-medium mt-2">Review &amp; confirm</h3><p class="muted text-sm mt-2">Applications, eligibility, Atlas codes.</p></li>
+      <li class="card"><p class="text-xs muted">Step 4</p><h3 class="font-medium mt-2">Verify &amp; monitor</h3><p class="muted text-sm mt-2">Submissions, tracked videos, imports.</p></li>
+    </ol>
+  </section>
+  <section class="wrap py-10"><div class="bg-[#eae3f7] rounded-[24px] px-7 py-12 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"><div><h2 class="section-title">Run your next campaign here.</h2><p class="muted mt-4 max-w-[480px]">End-to-end flow: register → Agency workspace → discovery → launch → monitoring.</p></div><div class="shrink-0 flex flex-wrap gap-3"><a class="button primary" href="register.html?role=agency">Get started</a><a class="button secondary" href="login.html?role=agency">Log in</a></div></div></section>
+</main>
+<footer class="pb-8"><div class="wrap"><div class="grid md:grid-cols-[1.2fr_1fr_1fr] gap-10 pb-9 border-b border-line"><div><a href="marketing.html" aria-label="Atlas Nexus home"><img src="images/atlas-nexus-logo.png" alt="Atlas Nexus" class="w-[145px]"></a><p class="muted text-sm mt-3 max-w-[300px]">Better connections. Clearer outcomes.</p><div class="flex flex-wrap gap-3 mt-5"><a class="button primary !min-h-[40px] !px-5" href="register.html?role=agency">Get started</a><a class="button secondary !min-h-[40px] !px-5" href="login.html?role=agency">Log in</a></div></div><nav aria-label="Platform"><p class="text-sm font-medium mb-3">Platform</p><div class="flex flex-col gap-2.5 text-sm muted"><a href="for-brands.html">For Brands</a><a href="for-agencies.html">For Agencies</a><a href="for-creators.html">For Creators</a><a href="pricing.html">Pricing</a><a href="index.html">Live app demo</a></div></nav><nav aria-label="Resources"><p class="text-sm font-medium mb-3">Resources</p><div class="flex flex-col gap-2.5 text-sm muted"><a href="marketing.html#how-it-works">How it works</a><a href="marketing.html#faq">FAQs</a><a href="mailto:creator.partnership@p2plabs.asia">Contact</a></div></nav></div><div class="flex flex-col sm:flex-row gap-3 justify-between text-xs muted pt-6"><p>© 2026 Atlas Nexus. All rights reserved.</p><p>A product of PT Sorak Digital Media (P2P Labs).</p></div></div></footer>
+</body>
+</html>

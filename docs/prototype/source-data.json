@@ -1,0 +1,124 @@
+{
+  "capturedAt": "2026-10-10",
+  "organization": {
+    "name": "PT Sorak Digital Media",
+    "status": "Active",
+    "createdDate": "Jun 12, 2026",
+    "partnerCount": 3,
+    "channelCount": 40,
+    "activeContracts": 10,
+    "mappedChannels": 40,
+    "unmappedChannels": 0,
+    "archivedChannels": 0,
+    "contentOwners": 0
+  },
+  "sources": {
+    "overview": "https://atlasnexus.app/app/organizations/2d73aa03-46a4-4a53-b23d-6ea96b913bac?tab=overview",
+    "mcns": "https://atlasnexus.app/app/organizations/2d73aa03-46a4-4a53-b23d-6ea96b913bac?tab=mcns",
+    "channels": "https://atlasnexus.app/app/organizations/2d73aa03-46a4-4a53-b23d-6ea96b913bac?tab=channels"
+  },
+  "partners": [
+    {
+      "name": "Haluan Digital Agency",
+      "type": "Agency",
+      "alias": "PT Visi Cipta Produksindo",
+      "channels": "0"
+    },
+    {
+      "name": "MEA",
+      "type": "Agency",
+      "alias": "PT Mea Digital Marketing",
+      "channels": "3"
+    },
+    {
+      "name": "P2P Labs",
+      "type": "InHouse",
+      "alias": "PT Sorak Digital Media",
+      "channels": "44"
+    }
+  ],
+  "channels": [
+    {
+      "name": "Lucyyy",
+      "partner": "P2P Labs",
+      "path": "/app/channels/f93e857d-ff1f-402d-a2f4-833c617a14f8",
+      "subscribers": "3",
+      "thumbnail": "https://yt3.ggpht.com/OA-TEzb2hst6TsejIwVc7Eo99gpPCFP_uTxTc8ia9NtCS585vs6iG2Cv4ruhJzE-1LQaowfovQ=s800-c-k-c0x00ffffff-no-rj",
+      "views": "2.8K"
+    },
+    {
+      "name": "Biar Wangi",
+      "partner": "P2P Labs",
+      "path": "/app/channels/0bd52e47-86a1-4652-aac6-8b1625904b11",
+      "subscribers": "6",
+      "thumbnail": "https://yt3.ggpht.com/PzBcnhiXFK4OrAtfMUlML34WS6HPppMQr21kZbJG8Wu3yILkpm9CcGDMM3rkXV7TVSSTZX1i=s800-c-k-c0x00ffffff-no-rj",
+      "views": "2K"
+    },
+    {
+      "name": "Sole Story",
+      "partner": "P2P Labs",
+      "path": "/app/channels/5e053938-c425-4771-a0b1-399fc5c76511",
+      "subscribers": "5",
+      "thumbnail": "https://yt3.ggpht.com/qEwYeVpG8K884NZU4OsO3JeTxUd249qIcab522Oo1wVXUyfNmAFzdzqtdR7dN8A1UT1MfmCpDA=s800-c-k-c0x00ffffff-no-rj",
+      "views": "1.3K"
+    },
+    {
+      "name": "Sini Gua Spill Gadget",
+      "partner": "P2P Labs",
+      "path": "/app/channels/873da40f-8eb7-49fa-a607-aa3ed0c5ce57",
+      "subscribers": "8",
+      "thumbnail": "https://yt3.ggpht.com/9k0GLFXyAd-bkWQmF7z3cColAU2r8zQWE-cK1_8GDiRh6reXA4dFj8_7y3auUfw5mCPqpRoHBw=s800-c-k-c0x00ffffff-no-rj",
+      "views": "4.3K"
+    },
+    {
+      "name": "Fetty Bismo Channel",
+      "partner": "P2P Labs",
+      "path": "/app/channels/f82c1cef-ff6d-47ec-8e36-72851443386c",
+      "subscribers": "1.9K",
+      "thumbnail": "https://yt3.ggpht.com/wed3y39Ii5dEjnt2li5Re4MU9riXVv5IBnd0XNOuWePoxLW7fUmdAvsFkJ4KC2qEwfP0-LudQg=s800-c-k-c0x00ffffff-no-rj",
+      "views": "679K"
+    },
+    {
+      "name": "Fayyy2199",
+      "partner": "P2P Labs",
+      "path": "/app/channels/28706159-ab81-4e0f-a1c3-1a15104a0e68",
+      "subscribers": "673",
+      "thumbnail": "https://yt3.ggpht.com/UDw88Zy1Q7Lcken52ZmCcZthWztynNaopu8S-fY8DVzUpRjEoLYna4dzqpEhbZ6MNhRS1o1J=s800-c-k-c0x00ffffff-no-rj",
+      "views": "220.3K"
+    },
+    {
+      "name": "Aulia Dita Pratiwi",
+      "partner": "P2P Labs",
+      "path": "/app/channels/fb1bfe63-e1f6-44ea-b681-b2a99985bc2a",
+      "subscribers": "41",
+      "thumbnail": "https://yt3.ggpht.com/Ghw77JMHJIdIhIvMsnWnnzuUFNEihi9TBwsO81DHu63Qplkfk-HMZUm9s15UA39cTtyR_XO-=s800-c-k-c0x00ffffff-no-rj",
+      "views": "26.1K"
+    },
+    {
+      "name": "Bossdikha",
+      "partner": "P2P Labs",
+      "path": "/app/channels/f8d40625-49b3-4c32-9f25-10c7327231a5",
+      "subscribers": "63",
+      "thumbnail": "https://yt3.ggpht.com/G-Djit4LUnux68blzr6kH1G6a4hoD0Z-XCHKEZXL_lAt2rfWI3qE8N9dkV0BNF6dY5KYKanRrrA=s800-c-k-c0x00ffffff-no-rj",
+      "views": "28.9K"
+    },
+    {
+      "name": "Astry_id",
+      "partner": "P2P Labs",
+      "path": "/app/channels/44e602bb-aa3b-4669-a19c-07c61db5bfc5",
+      "subscribers": "356",
+      "thumbnail": "https://yt3.ggpht.com/eJ_zzcHrQiYN1PI6mrnjUZ196XFgWgmBoqOMITh6bqSavLwm7S31j0x-vv6RkJomPcde5iAc=s800-c-k-c0x00ffffff-no-rj",
+      "views": "4.3M"
+    },
+    {
+      "name": "Mas Aldi",
+      "partner": "P2P Labs",
+      "path": "/app/channels/03090e41-5790-46a4-ac44-0b899169cbd8",
+      "subscribers": "1.2K",
+      "thumbnail": "https://yt3.ggpht.com/Tk1BAVyif3Uv_-TGdIFERi1xMIh_vPbTILD4HM0oCPTx7J7oAR5gPvXMcUR_AhtO8uXUAP1D=s800-c-k-c0x00ffffff-no-rj",
+      "views": "4.3M"
+    }
+  ],
+  "coverage": "Channels source displayed 10 rows. These are not the complete 40-channel inventory. Values preserve the source display precision. Partner counts and organization overview counts are separate source values and differ.",
+  "metricsScope": "Views and subscribers come from the Channels table; they are not campaign results or period-specific totals."
+}
