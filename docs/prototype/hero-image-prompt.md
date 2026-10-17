@@ -1,9 +1,0 @@
-# Hero image generation
-
-Current asset: `images/hero-creator-studio-v3.webp` (1774 × 887).
-
-Method: built-in ImageGen. The generated PNG was exported as WebP at quality 88 without changing the composition.
-
-## Final prompt
-
-Generate a premium photorealistic editorial website hero background for Atlas Nexus, a YouTube creator partnership platform. Wide landscape photograph. IMPORTANT: the entire frame, INCLUDING THE LEFT HALF, must be filled with a richly detailed continuous creative production studio. No empty wall, no blank negative space, no faded white area, no intentional blank zone for typography. Left side: a substantial studio workstation, dark monitor with indistinct editing timeline without legible text, camera lens and production equipment on desk, shelving with filmmaking gear, softbox light, leafy plant and window details. Center: warm natural studio depth with desk and lighting equipment. Right side: two Southeast Asian adult creative professionals, woman in charcoal overshirt and man in light neutral shirt, candidly reviewing a tablet together, with camera on tripod in front. Keep their faces in rightmost third so web headline can overlay the left workstation. Full-bleed lived-in creative environment edge to edge with natural photographic texture and realistic detail. Soft natural daylight, cool neutral greys, muted sage and subtle lavender accents, natural skin, gentle shadows. Authentic editorial photography, natural 40mm lens, realistic anatomy. No text, watermark, logos, floating UI, invented statistics, charts, collage or split-screen. This is decorative studio imagery, not actual customers. Unlike an empty minimalist studio portrait, show a complete busy-but-tasteful production workspace on the left and human collaboration on the right. Do not apply gradients or white overlays to the image; those are handled in website CSS.

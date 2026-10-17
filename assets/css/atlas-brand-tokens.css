@@ -1,0 +1,30 @@
+/* Canonical Atlas Nexus identity, shared by marketing and application surfaces. */
+:root {
+  --atlas-font-ui: Outfit, ui-sans-serif, system-ui, sans-serif;
+  --atlas-ink: #252236;
+  --atlas-muted: #6c687c;
+  --atlas-violet: #7250ce;
+  --atlas-violet-hover: #6742bc;
+  --atlas-line: #e5e2ed;
+  --atlas-paper: #f6f5f9;
+  --atlas-workspace: #fbfafc;
+  --atlas-white: #ffffff;
+  --atlas-selected: #eee8fa;
+  --atlas-control-border: #8a8499;
+  --atlas-primary-hover: #493765;
+  --atlas-radius-control: 8px;
+  --atlas-radius-kpi: 10px;
+  --atlas-radius-panel: 12px;
+  --atlas-radius-dialog: 16px;
+  --atlas-space-1: 4px;
+  --atlas-space-2: 8px;
+  --atlas-space-3: 12px;
+  --atlas-space-4: 16px;
+  --atlas-space-5: 20px;
+  --atlas-space-6: 24px;
+  --atlas-space-8: 32px;
+  --atlas-success: #166534; --atlas-success-bg: #f0fdf4;
+  --atlas-warning: #92400e; --atlas-warning-bg: #fffbeb;
+  --atlas-danger: #b91c1c; --atlas-danger-bg: #fef2f2;
+  --atlas-info: #1d4ed8; --atlas-info-bg: #eff6ff;
+}

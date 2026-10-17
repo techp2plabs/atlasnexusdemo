@@ -1,0 +1,11 @@
+.git
+.gitignore
+node_modules
+.nuxt
+.output
+.superpowers
+.env
+.env.*
+!.env.example
+coverage
+tests
