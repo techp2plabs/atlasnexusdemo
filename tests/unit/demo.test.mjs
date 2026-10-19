@@ -28,7 +28,9 @@ test('public analytics uses public video metrics and the selected hierarchy scop
 test('demo seed contains consistent hierarchy, creator evidence, reports, and public analytics fixtures', () => {
   assert.equal(typeof seedModule?.createSeed, 'function');
   const state = seedModule.createSeed('2026-10-17');
-  assert.ok(state.organizations.length >= 2);
+  // The seed models the single P2P Labs organization snapshot (see docs/provenance.md),
+  // so the hierarchy is one organization with three partner networks beneath it.
+  assert.ok(state.organizations.length >= 1);
   assert.ok(state.networks.length >= 3);
   assert.ok(state.channels.length >= 6);
   assert.ok(state.videos.length >= 10);

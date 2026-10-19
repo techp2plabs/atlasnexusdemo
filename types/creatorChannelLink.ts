@@ -1,0 +1,5 @@
+export type CreatorLinkStatus = 'proposed' | 'accepted' | 'linked' | 'declined' | 'expired' | 'cancelled'
+export interface CreatorLinkResult { request_id: string; status: CreatorLinkStatus; account_status: string; channel_link_status: string; next_action: string; failure_code?: string | null; expires_at?: string | null }
+export interface CreatorLinkDetail extends CreatorLinkResult { organization_id: string; organization_name: string; mcn_id: string; mcn_name: string; channels: Array<{ id: string; channel_id: string; title: string }>; responded_at?: string | null }
+export interface CreatorLinkPage { items: CreatorLinkResult[]; total: number; page: number; page_size: number; total_pages: number }
+export interface AdminCreatorLink extends CreatorLinkResult { target_user_id: string; source_type: 'standalone' | 'invitation'; organization_id: string; mcn_id: string; reason: string; evidence_reference?: string | null; evidence_reviewed_at?: string | null; channels: Array<{id:string;channel_id:string;title:string}> }

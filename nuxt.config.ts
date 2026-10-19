@@ -8,9 +8,9 @@ export default defineNuxtConfig({
   watchers: { chokidar: { usePolling: true, interval: 1000 } },
   vite: { server: { watch: { usePolling: true, interval: 1000 } } },
   devtools: { enabled: false },
-  modules: ['@pinia/nuxt'],
-  pinia: { storesDirs: [] },
-  imports: { dirs: [] },
+  modules: ['@vueuse/nuxt', '@pinia/nuxt'],
+  pinia: { storesDirs: ['./stores/**'] },
+  imports: { dirs: ['./composables/**', './utils/**'] },
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
