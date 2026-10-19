@@ -194,16 +194,18 @@ Menyiapkan pondasi umum agar seluruh komponen UI existing dapat me-render dengan
 
 ---
 
-### Fase 4: Ecosystem Management (Items 9, 10, 11, 12, 13, 14) — BELUM DIMULAI
-- [ ] **Halaman 9 & 10 (Organizations Index & Detail)**:
+### Fase 4: Ecosystem Management (Items 9, 10, 11, 12, 13, 14) — SELESAI (19 Okt 2026)
+- [x] **Halaman 9 & 10 (Organizations Index & Detail)**:
   - `pages/app/organizations/index.vue`: Filter search, tabel organisasi dengan jumlah channel, partner MCN, dan status.
   - `pages/app/organizations/[id].vue`: Target UUID `a3ce0027-3a9a-4acf-9dac-2c2cbff845cd`. Header organisasi, tab MCNs, Channels, Contracts, dan Team Members.
-- [ ] **Halaman 11 & 12 (Partner Networks / MCNs Index & Detail)**:
+- [x] **Halaman 11 & 12 (Partner Networks / MCNs Index & Detail)**:
   - `pages/app/mcns/index.vue`: Filter organisasi, daftar MCN partners, channel count.
   - `pages/app/mcns/[id].vue`: Target UUID `c6c43b07-6abc-4ce1-8813-6d5e91f03d61`. Detail MCN partner, channel terhubung, revenue split, dan kontrak.
-- [ ] **Halaman 13 & 14 (Channels Index & Detail)**:
+- [x] **Halaman 13 & 14 (Channels Index & Detail)**:
   - `pages/app/channels/index.vue`: Filter multi-level (Organization, MCN, Status), tabel YouTube channel dengan subscriber, views, dan action buttons.
   - `pages/app/channels/[id].vue`: Target UUID `d98a2e8b-63ff-44a7-99a5-9e59afcf57f4`. Detail channel YouTube, metadata video, histori sinkronisasi, dan status afiliasi.
+- Halaman enam route disalin dari `atlas-platform-fe` agar memakai layout, filter, tab, dan aksi UI yang sama. Halaman demo lama `pages/app/organizations.vue`, `pages/app/mcns.vue`, dan `pages/app/channels.vue` dihapus agar tidak menimpa route `index.vue`.
+- Mock ecosystem dilengkapi metadata jumlah channel/MCN dan partner type; kontrak aktif representatif untuk relasi Organization → MCN dan MCN → Channel; fixture organization owner, creator user, dan content owner; mock status OAuth dan endpoint stats; filter dan pagination list.
 
 ---
 
@@ -270,31 +272,38 @@ Semua angka di bawah berasal dari eksekusi nyata pada build produksi (`.output/s
 | `…?tab=share` | ✅ | Status share + public URL |
 | `/app/analytics/channels/UC_dr_kevin_mak` | ✅ | Drill-down channel |
 
-### 7.3 Temuan di luar Fase 3 (perlu tindak lanjut)
+### 7.3 Temuan Runtime Fase 1 dan 2
 
-Route smoke seluruh 14 halaman menemukan bahwa **Fase 1 dan Fase 2 saat ini gagal render di runtime**, meski checklist-nya sudah ditandai selesai. Ini bukan akibat pekerjaan Fase 3 (Fase 3 hanya menambah cabang endpoint baru + memperbaiki bentuk fixture report/analytics); penyebabnya adalah cabang mock yang belum lengkap pada `composables/useApi.ts`.
+Pemeriksaan awal seluruh halaman menemukan bahwa **Fase 1 dan Fase 2 gagal render di runtime**, meski checklist-nya sudah ditandai selesai. Kontrak mock yang belum lengkap di `composables/useApi.ts` diperbaiki sebagai tindak lanjut. Tabel ini mencatat kondisi lama untuk lima route tersebut; status verifikasi terbaru ada di §7.6.
 
 | Route | Status | Gejala |
 |---|---|---|
-| `/app/home` | ❌ | Blank (26 karakter ter-render). `TypeError: Cannot read properties of undefined (reading 'pending_verifications')` |
-| `/app/youtube-brand-campaign/creator-discovery` | ❌ | `TypeError: … .slice is not a function`, `… .filter is not a function` |
-| `/app/youtube-brand-campaign/creator-discovery/edb25ae3-…` | ❌ | `TypeError: Cannot read properties of undefined (reading 'length')` |
-| `/app/youtube-brand-campaign/campaigns` | ❌ | Blank (31 karakter). `TypeError: … (reading 'percentage')` |
-| `/app/youtube-brand-campaign/campaigns/6c641436-…` | ❌ | Error runtime saat inisialisasi |
-| `/app/organizations` | ⚠️ | Render, tetapi masih memakai halaman demo lama (`pages/app/organizations.vue` + `stores/demo`), belum halaman hasil porting |
-| `/app/mcns` | ⚠️ | Sama seperti di atas (`pages/app/mcns.vue`) |
-| `/app/channels` | ⚠️ | Sama seperti di atas (`pages/app/channels.vue`) |
-| `/app/organizations/a3ce0027-…` | ❌ | `Page not found` — Fase 4 belum dikerjakan |
-| `/app/mcns/c6c43b07-…` | ❌ | `Page not found` — Fase 4 belum dikerjakan |
-| `/app/channels/d98a2e8b-…` | ❌ | `Page not found` — Fase 4 belum dikerjakan |
+| `/app/home` | ✅ | Endpoint `/dashboard/platform-overview` kini mengembalikan overview dengan `counts.pending_verifications`; overview dan kartu dashboard ter-render. |
+| `/app/youtube-brand-campaign/creator-discovery` | ✅ | Endpoint facet `/creator-bank/topics` mengembalikan array topic; tiga profil tampil dengan nama, niche, statistik, dan filter facet. |
+| `/app/youtube-brand-campaign/creator-discovery/edb25ae3-…` | ✅ | Profil Fetty Bismo beserta tab overview dan field kontak/social kosong ter-render tanpa exception. |
+| `/app/youtube-brand-campaign/campaigns` | ✅ | Tiga campaign tampil dan completeness tersedia untuk setiap kartu. |
+| `/app/youtube-brand-campaign/campaigns/6c641436-…` | ✅ | Overview, completeness, investment mix, forecast, product list, dan tab workspace tampil tanpa exception. |
+**Akar masalah Fase 1:** `composables/usePlatformOverview.ts` memanggil `/api/v1/dashboard/platform-overview`, sedangkan mock hanya mencocokkan `/overview/platform` dan `/overview/control-tower`. Request jatuh ke fallback `{ success: true }`, sehingga `counts` menjadi `undefined` dan komponen dashboard melempar error saat render. Feed aktivitas juga meminta `/dashboard/activity` dalam bentuk `{ items }`, sedangkan mock lama hanya mengenali `/overview/activity` dan fixture-nya memakai field/timestamp legacy. Kedua endpoint kini memiliki respons dan data yang sesuai.
 
-**Akar masalah Fase 1:** `composables/usePlatformOverview.ts` memanggil `/api/v1/dashboard/platform-overview`, sedangkan mock hanya mencocokkan `/overview/platform` dan `/overview/control-tower`. Request jatuh ke fallback `{ success: true }`, sehingga `counts` menjadi `undefined` dan `components/dashboard/DashboardAttention.vue` / `PlatformMetrics.vue` melempar error saat render.
+**Akar masalah Fase 2:** endpoint facet creator bank tertangkap sebagai endpoint profil dinamis, profil lama tidak menyediakan semua field yang diminta detail, dan campaign lama tidak menyediakan objek `completeness`. Mock kini merutekan sub-resource facet/video/note sebelum profil dinamis serta menormalisasi profil dan campaign ke kontrak composable.
 
-**Akar masalah Fase 2:** bentuk respons mock untuk creator bank dan campaign belum mengikuti kontrak komposit di `composables/youtubeBrandCampaign/*` (mis. daftar yang diharapkan array tetapi menerima objek, dan metrik distribusi tanpa `percentage`).
-
-**Sudah siap untuk Fase 4:** `mocks/mockData.ts` sudah memuat `TARGET_IDS` untuk organisasi/MCN/channel beserta fixture `mockOrganizations`, `mockMcns`, `mockChannels`, dan `composables/useApi.ts` sudah melayani `/organizations`, `/mcns`, `/channels` (list maupun detail dengan relasi `mcns`/`channels`/`recent_videos`). Yang belum ada hanyalah halaman `pages/app/**/[id].vue` yang menjadi target Fase 4.
+**Status tindak lanjut:** Fase 1 dan Fase 2 pada tabel di atas telah diperbaiki dan diverifikasi kembali setelah build. Fase 4 juga sudah mengisi route index dan detail ekosistem yang sebelumnya belum tersedia; fixture serta mock API untuk organisasi, MCN, channel, kontrak, pengguna, content owner, OAuth, dan statistik tersedia di prototype.
 
 ### 7.4 Catatan lingkungan
 
 - `tests/e2e/` masih kosong; `npm run test:e2e` tidak menemukan file. Route smoke di atas dijalankan dengan skrip CDP sementara (tanpa dependensi npm baru) dan hasilnya dicatat di sini.
 - Saat build muncul warning non-blocking: `Two component files resolving to the same name Shadcn*` (karena barrel `index.ts` di dalam `components/shadcn/*` ikut terbaca sebagai komponen) dan puluhan `Duplicated imports` antar composable report/channel report. Tidak memengaruhi hasil; kandidat pembersihan terpisah.
+
+### 7.5 Fase 4 — verifikasi
+
+- Build produksi setelah porting Fase 4: ✅ `npm run build` selesai (`Build complete!`). Warning komponen Shadcn dan duplicate auto-import yang sudah tercatat di atas tetap muncul.
+- Smoke UI lokal: ✅ keenam route organisasi, MCN, dan channel (index + detail UUID target) dimuat; list berisi fixture dan halaman detail menampilkan tab serta relasi yang tersedia.
+
+### 7.6 Fase 1 dan 2 — tindak lanjut runtime
+
+- Build produksi setelah perbaikan kontrak mock: ✅ `npm run build` selesai (`Build complete!`). Warning duplicate component/import dan ukuran chunk tetap seperti catatan lingkungan.
+- Pemeriksaan route produksi lokal pada build akhir: ✅ seluruh 14 URL pada §6 memuat konten, tidak tertinggal pada state loading, dan tidak mengeluarkan error aplikasi di console.
+- `/app/home`: ✅ overview, perhatian dashboard, dan empat entri Recent activity tampil dengan nama actor serta timestamp terbaca.
+- Interaksi daftar: ✅ pencarian creator “Maya” menghasilkan 1 creator; filter topik Beauty menghasilkan 2 creator yang sesuai; pencarian organization “P2P” menghasilkan satu baris.
+- Interaksi detail: ✅ deep-link Organization `?tab=channels` menampilkan tabel 5 channel; deep-link MCN `?tab=channels` menampilkan 5 channel; deep-link MCN `?tab=users` memuat user Fetty Bismo; deep-link Channel `?tab=contracts` menampilkan kontrak aktif.
+- Visual fidelity: ✅ 13 dari 14 file halaman identik byte-for-byte dengan sumber `atlas-platform-fe`; file MCN detail hanya memiliki tambahan pemuatan data untuk deep-link tab. Screenshot halaman detail MCN ditinjau setelah perubahan, dan struktur serta styling tabel/tab tetap berasal dari halaman sumber.

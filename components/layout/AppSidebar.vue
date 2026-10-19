@@ -265,158 +265,7 @@
             </NuxtLink>
           </li>
 
-          <!-- Contracts (view for creators; full access for org/MCN/atlas roles) -->
-          <li v-if="canViewContractsNav">
-            <NuxtLink
-              to="/app/contracts"
-              aria-label="Contracts"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isActive('/app/contracts'),
-                  'menu-item-inactive': !isActive('/app/contracts'),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isActive('/app/contracts')
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="ContractIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Contracts</span
-              >
-            </NuxtLink>
-          </li>
-
-          <!-- Reports — hidden from sidebar; route /app/reports remains accessible via URL -->
-          <!--
-          <li v-if="canViewReports">
-            <NuxtLink
-              to="/app/reports"
-              aria-label="Reports"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isActive('/app/reports'),
-                  'menu-item-inactive': !isActive('/app/reports'),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isActive('/app/reports')
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="PieChartIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Reports</span
-              >
-            </NuxtLink>
-          </li>
-          -->
-
-          <li
-            v-if="(isExpanded || isHovered || isMobileOpen) && canViewUsers"
-            class="nx-sidebar-group px-3 pt-2 flex items-center justify-between select-none"
-          >
-            <span class="text-[10px] font-semibold uppercase tracking-wider text-gray-400">Management</span>
-          </li>
-          <li v-if="!isExpanded && !isHovered && !isMobileOpen" class="nx-sidebar-separator" aria-hidden="true"><span /></li>
-          <!-- Users -->
-          <li v-if="canViewUsers">
-            <NuxtLink
-              to="/app/users"
-              aria-label="Users"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isUsersNavActive(),
-                  'menu-item-inactive': !isUsersNavActive(),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isUsersNavActive()
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="UserCircleIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Users</span
-              >
-            </NuxtLink>
-          </li>
-
-          <li v-if="canViewOnboardingQueues">
-            <NuxtLink to="/app/users/agency-access-requests" aria-label="Agency requests" :aria-current="isActive('/app/users/agency-access-requests') ? 'page' : undefined" :title="!isExpanded && !isHovered && !isMobileOpen ? 'Agency requests' : undefined" :class="['menu-item group', isActive('/app/users/agency-access-requests') ? 'menu-item-active' : 'menu-item-inactive']">
-              <span :class="isActive('/app/users/agency-access-requests') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'"><component :is="AgencyRequestsIcon" aria-hidden="true" /></span>
-              <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">Agency requests</span>
-            </NuxtLink>
-          </li>
-          <li v-if="canViewOnboardingQueues">
-            <NuxtLink to="/app/users/brand-waitlist" aria-label="Brand waitlist" :aria-current="isActive('/app/users/brand-waitlist') ? 'page' : undefined" :title="!isExpanded && !isHovered && !isMobileOpen ? 'Brand waitlist' : undefined" :class="['menu-item group', isActive('/app/users/brand-waitlist') ? 'menu-item-active' : 'menu-item-inactive']">
-              <span :class="isActive('/app/users/brand-waitlist') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'"><component :is="BrandWaitlistIcon" aria-hidden="true" /></span>
-              <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">Brand waitlist</span>
-            </NuxtLink>
-          </li>
-          <li v-if="canViewOnboardingQueues">
-            <NuxtLink to="/app/users/onboarding-metrics" aria-label="Onboarding metrics" :aria-current="isActive('/app/users/onboarding-metrics') ? 'page' : undefined" :title="!isExpanded && !isHovered && !isMobileOpen ? 'Onboarding metrics' : undefined" :class="['menu-item group', isActive('/app/users/onboarding-metrics') ? 'menu-item-active' : 'menu-item-inactive']">
-              <span :class="isActive('/app/users/onboarding-metrics') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'"><component :is="OnboardingMetricsIcon" aria-hidden="true" /></span>
-              <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">Onboarding metrics</span>
-            </NuxtLink>
-          </li>
-          <li v-if="authStore.user?.role === 'creator'">
-            <NuxtLink to="/app/creator/channel-link-requests" aria-label="Channel access requests" :aria-current="isActive('/app/creator/channel-link-requests') ? 'page' : undefined" :class="['menu-item group', isActive('/app/creator/channel-link-requests') ? 'menu-item-active' : 'menu-item-inactive']">
-              <span :class="isActive('/app/creator/channel-link-requests') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'"><component :is="LinkIcon" aria-hidden="true" /></span>
-              <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">Channel requests</span>
-            </NuxtLink>
-          </li>
-          <!-- Invitations -->
-          <li v-if="canViewUsers">
-            <NuxtLink
-              to="/app/users/invites"
-              aria-label="Invitations"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isInvitesNavActive(),
-                  'menu-item-inactive': !isInvitesNavActive(),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isInvitesNavActive()
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="PageIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Invitations</span
-              >
-            </NuxtLink>
-          </li>
+          <!-- Settings: keep Account available while other settings are paused. -->
           <li
             v-if="isExpanded || isHovered || isMobileOpen"
             class="nx-sidebar-group px-3 pt-2 flex items-center justify-between select-none"
@@ -452,186 +301,8 @@
               >
             </NuxtLink>
           </li>
-          <li v-if="isAdmin">
-            <NuxtLink
-              to="/app/settings/creator-suites"
-              aria-label="Creator Suites Management"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isActive('/app/settings/creator-suites'),
-                  'menu-item-inactive': !isActive('/app/settings/creator-suites'),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isActive('/app/settings/creator-suites')
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="ToolsIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Creator Suites Management</span
-              >
-            </NuxtLink>
-          </li>
-          <li v-if="isAdmin">
-            <NuxtLink
-              to="/app/settings/pages"
-              aria-label="Pages"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isActive('/app/settings/pages'),
-                  'menu-item-inactive': !isActive('/app/settings/pages'),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isActive('/app/settings/pages')
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="PageIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Pages</span
-              >
-            </NuxtLink>
-          </li>
-          <li v-if="isAdmin">
-            <NuxtLink
-              to="/app/settings/email-templates"
-              aria-label="Email Templates"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isActive('/app/settings/email-templates'),
-                  'menu-item-inactive': !isActive('/app/settings/email-templates'),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isActive('/app/settings/email-templates')
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="ListIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Email Templates</span
-              >
-            </NuxtLink>
-          </li>
-          <li v-if="isAdmin">
-            <NuxtLink
-              to="/app/settings/youtube-api"
-              aria-label="YouTube API"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isActive('/app/settings/youtube-api'),
-                  'menu-item-inactive': !isActive('/app/settings/youtube-api'),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isActive('/app/settings/youtube-api')
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="YoutubeIcon" class="h-[18px] w-[18px]" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >YouTube API</span
-              >
-            </NuxtLink>
-          </li>
-          <li v-if="isAdmin">
-            <NuxtLink
-              to="/app/settings/release-notes"
-              aria-label="Release Notes"
-              :class="[
-                'menu-item group',
-                {
-                  'menu-item-active': isActive('/app/settings/release-notes'),
-                  'menu-item-inactive': !isActive('/app/settings/release-notes'),
-                },
-              ]"
-            >
-              <span
-                :class="[
-                  isActive('/app/settings/release-notes')
-                    ? 'menu-item-icon-active'
-                    : 'menu-item-icon-inactive',
-                ]"
-              >
-                <component :is="ReleaseNotesIcon" />
-              </span>
-              <span
-                v-if="isExpanded || isHovered || isMobileOpen"
-                class="menu-item-text"
-                >Release Notes</span
-              >
-            </NuxtLink>
-          </li>
-          <li v-if="isAdmin">
-            <NuxtLink to="/apps/youtube-brand-campaign-prototype"
-              aria-label="YouTube Brand Campaign prototype" title="YouTube Brand Campaign prototype"
-              :class="['menu-item group', isActive('/apps/youtube-brand-campaign-prototype') ? 'menu-item-active' : 'menu-item-inactive']">
-              <span class="menu-item-icon-inactive"><YoutubeIcon aria-hidden="true" /></span>
-              <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">Campaign prototype</span>
-            </NuxtLink>
-          </li>
         </ul>
       </nav>
-
-      <!-- Organization Filter (Hidden - Not currently used)
-      <div
-        v-if="orgFilter.isSuperadmin && (isExpanded || isHovered || isMobileOpen)"
-        class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800"
-      >
-        <div class="px-3">
-          <label
-            class="mb-2 block text-xs font-medium text-gray-500 dark:text-gray-400"
-          >
-            Filter by Organization
-          </label>
-          <select
-            v-model="orgFilter.selectedOrganizationId"
-            @change="orgFilter.setSelectedOrganization(orgFilter.selectedOrganizationId)"
-            class="h-9 w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-800 shadow-theme-xs focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-800 dark:text-white/90 dark:focus:border-brand-800"
-            :disabled="orgFilter.loading"
-          >
-            <option :value="null">All Organizations</option>
-            <option
-              v-for="org in orgFilter.organizations"
-              :key="org.id"
-              :value="org.id"
-            >
-              {{ org.name }}
-            </option>
-          </select>
-        </div>
-      </div>
-      -->
     </div>
     <div v-if="railTooltip && !isExpanded && !isHovered && !isMobileOpen"
       id="workspace-rail-tooltip" role="tooltip"
@@ -646,31 +317,20 @@ import {
   Home as HomeIcon,
   Building2 as BuildingIcon,
   Boxes as BoxIcon,
-  CircleUserRound as UserCircleIcon,
-  FileSignature as ContractIcon,
   ChartPie as PieChartIcon,
-  FileText as PageIcon,
   Settings2 as SettingsIcon,
   Wrench as ToolsIcon,
   Search as DiscoveryIcon,
   Megaphone as CampaignIcon,
   ClipboardList as ApplicationsIcon,
-  List as ListIcon,
   Youtube as YoutubeIcon,
-  ScrollText as ReleaseNotesIcon,
-  ClipboardCheck as AgencyRequestsIcon,
-  Inbox as BrandWaitlistIcon,
-  ChartNoAxesCombined as OnboardingMetricsIcon,
-  Link as LinkIcon,
 } from 'lucide-vue-next'
 import { getCampaignNavigation, isNavigationActive } from '~/utils/workspaceNavigation'
 import { useSidebar } from '~/composables/useSidebar'
 import { useAuthStore } from '~/stores/auth'
-import { useOrganizationFilter } from '~/composables/useOrganizationFilter'
 
 const route = useRoute()
 const authStore = useAuthStore()
-const orgFilter = useOrganizationFilter()
 
 const {
   isExpanded,
@@ -683,15 +343,6 @@ const {
 const campaignNavigation = computed(() => getCampaignNavigation(authStore.user?.role))
 const campaignIcons = { discovery: DiscoveryIcon, campaigns: CampaignIcon, applications: ApplicationsIcon }
 const isActive = (path: string) => isNavigationActive(route.path, path)
-
-/** Users list / verify — not the invitations sub-section */
-const isUsersNavActive = () => {
-  const p = route.path
-  if (p.startsWith('/app/creator/channel-link-requests') || p.startsWith('/app/users/invites') || p.startsWith('/app/users/agency-access-requests') || p.startsWith('/app/users/brand-waitlist') || p.startsWith('/app/users/onboarding-metrics')) return false
-  return p.startsWith('/app/users')
-}
-
-const isInvitesNavActive = () => route.path.startsWith('/app/users/invites')
 
 // Role-based visibility
 const canViewOrganizations = computed(() => {
@@ -715,22 +366,6 @@ const canViewMcns = computed(() => {
   )
 })
 
-const canViewUsers = computed(() => authStore.canManageUsersAndInvites)
-
-const canViewOnboardingQueues = computed(() => ['atlas_admin', 'atlas_superadmin'].includes(authStore.user?.role || ''))
-
-/** Reports (not for creators). */
-const canViewReports = computed(() => {
-  const role = authStore.user?.role
-  return (
-    role === 'atlas_superadmin' ||
-    role === 'atlas_admin' ||
-    role === 'org_owner' ||
-    role === 'org_admin' ||
-    role === 'mcn_operator'
-  )
-})
-
 /** Analytics — all roles including creator (creators see their own channels). */
 const canViewAnalytics = computed(() => {
   const role = authStore.user?.role
@@ -744,23 +379,6 @@ const canViewAnalytics = computed(() => {
   )
 })
 
-/** Contracts list: creators see channel-scoped contracts read-only from API. */
-const canViewContractsNav = computed(() => {
-  const role = authStore.user?.role
-  return canViewReports.value || role === 'creator'
-})
-
-const isAdmin = computed(() => {
-  const role = authStore.user?.role
-  return role === 'atlas_superadmin' || role === 'atlas_admin'
-})
-
-// Fetch organizations on mount if superadmin
-onMounted(() => {
-  if (orgFilter.isSuperadmin) {
-    orgFilter.fetchOrganizations()
-  }
-})
 const sidebarElement = ref<HTMLElement | null>(null)
 const railTooltip = ref<{ label: string; top: number } | null>(null)
 let tooltipTarget: HTMLElement | null = null
