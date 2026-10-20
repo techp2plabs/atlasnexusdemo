@@ -2,6 +2,10 @@
 
 A Nuxt 3 prototype for creator campaign matching, Creator Suites, network hierarchy, and public YouTube statistics. Business data is sample data stored in the current browser; this app does not connect to the existing Atlas Nexus backend.
 
+## Live demo
+
+The app is deployed on Google Cloud Run in the **Atlas Technology** GCP project (`atlas-technology`), in region `asia-southeast2`. Service: `atlasnexusdemo` — <https://atlasnexusdemo-gz23wnibqa-et.a.run.app/>.
+
 ## Run locally
 
 Requirements: Node.js 22 or 23 and npm.
@@ -39,11 +43,11 @@ npm run build
 npm run preview
 ```
 
-Local container preview (no cloud deployment):
+Local container preview:
 
 ```sh
 docker build -t atlas-nexus-demo .
 docker run --rm -p 8080:8080 -e GEMINI_API_KEY="$GEMINI_API_KEY" atlas-nexus-demo
 ```
 
-A Gemini key is optional for local container preview; without it, production mode returns a clear configuration error for AI actions instead of presenting sample output as a live result. No deployment has been performed.
+A Gemini key is optional for local container preview; without it, production mode returns a clear configuration error for AI actions instead of presenting sample output as a live result.
